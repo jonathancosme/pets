@@ -61,7 +61,7 @@ def write():
         st.code(getOLSResults(df))
         st.write(
             """
-            According to our OLD model, it appears temperature has a statistically significant 
+            According to our OLS model, it appears temperature has a statistically significant 
             impact on daily intake.  
             The same cannot be said of humidity, which does not seem to have an impact at all.  
             Precipitation might have an impact, but the evidence is not strong. 
