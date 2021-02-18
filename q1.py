@@ -25,6 +25,8 @@ def write():
     2. (optional) change Moving Average value
     3. Select the "Upload Data" button!  
 
+    (Please be patient while data and visuals load)
+
     """)    
     
     uploaded_file = st.file_uploader("Step 1: Select a csv file to upload.")
@@ -37,7 +39,7 @@ def write():
         Using a moving Moving Average Days value of 1 will show the normal (un-smoothed) data. 
         """
         )
-    movingAverageDays = st.number_input('Moving Average Days', 30)
+    movingAverageDays = st.number_input('Moving Average Days', value=30)
 
     st.write(
     """
@@ -46,27 +48,39 @@ def write():
 
     """)
 
-    st.write(
-    """
-    ## Analysis
-    Wherever possible, we display two data plots:  
-    + raw
-    + normalized  
-
-    The raw plot is just that: raw data.  
-    The normalized plot displays items as a percent of the day's intake.  
-    For example if 20 dogs were taken in on a certain date, and there were 
-    40 total intakes for that date, then the value for dog intakes would be 0.5   
-
-
-    """)
-    
 
     
     
       
     if st.button('Upload Data'):
         df = importDataNormalized(uploaded_file)
+        st.write(
+        """
+        ## Analysis
+        We plot different variables against each date in two different ways:  
+        + raw: the actual value for a variable on a date
+        + normalized: the percent value of a variable on a date (For example if 20 dogs were taken in on a certain date, and there were 
+        40 total intakes for that date, then the value for dog intakes would be 0.5 ) 
+
+        Looking at the raw format will allow us to notice patterns in terms of absolute volume over time.   
+        Looking at the normalized format will allow us to spot relative trends among the variables.  
+
+        We also use a moving average, in order to smooth our data so that we can get a clearer picture of trends.  
+
+        """)
+        
+        st.write(
+        """
+        ## Findings 
+        + highest intake per days occur during the first quarter of the year, with a slowdown towards the middle of the year, and an increase towards the end of the year.
+        + STRAY and OWNER SUR account for most of src_intake_type.
+        + CONFISCATE src_intake_type appears to be edging up throughout the year.
+        + OTC is the largest src_intake_subtype category, but it appears to diminish throughout the year; as FIELD increases throughout the year. 
+        + the majority of intakes are less than 5 years old
+
+
+        """)
+        
         st.write(
             """
             ## Raw Data
@@ -77,7 +91,7 @@ def write():
             """
             We added a few columns to the dataset above:  
             + count: this is just a value of 1 for each entry
-            + date_count: he total number of entries for a particular date
+            + date_count: the total number of entries for a particular date
             + weekday: the Sun-Sat value of a date
             + weekday_count: the total number of a Sun-Sat value in the dataset
             + percent: this is count / date_count
@@ -172,7 +186,7 @@ def write():
         st.pyplot(plotAge(df)) 
         st.write(
             """
-            It looks like most intakes had and age less than 5 years.
+            It looks like most intakes had an age less than 5 years.
             """)
 
 

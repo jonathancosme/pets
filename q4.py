@@ -16,8 +16,10 @@ def write():
     st.write(
     """
     # Instructions
-    1. Select "Browse files" and chose the intake data csv file
+    1. If you have NOT selected a file, select "Browse files" and chose the intake data csv file
     2. Select the "Upload Data" button!  
+
+    (Please be patient while data and visuals load)  
 
     """)
 
@@ -30,26 +32,23 @@ def write():
 
     """)
 
-    st.write(
-    """
-    ## Analysis
-    Given the recent snow debacle of Austin, I am curious about the impact of weather on intakes!  
-    I'm also from Florida and personally I didn't like going out in the rain.  
-
-
-    I've downloaded historic daily weather data for 2020 for Austin, and I'm going to run a simple regression
-    on daily intakes vs temperature, humidity, and precipiation.  
-    Since I imagine the relationship to be of degree order 2 (i.e. not an exact linear relationship), I will include
-    squared terms for each variable.
-    
-    """)
-    
-
-    
-    
+  
       
     if st.button('Upload Data'):
         df = getWeatherMerged(uploaded_file)
+        st.write(
+        """
+        ## Analysis
+        Given the recent snow debacle of Austin, I am curious about the impact of weather on intakes!  
+        I'm also from Florida and personally I didn't like going out in the rain.  
+
+
+        I've downloaded historic daily weather data for 2020 for Austin, and I'm going to run a simple regression
+        on daily intakes vs temperature, humidity, and precipiation.  
+        Since I imagine the relationship to be of degree order 2 (i.e. not an exact linear relationship), I will include
+        squared terms for each variable.
+        
+        """)
         st.write(
             """
             ### Daily intake total merged with Austin weather data
@@ -84,7 +83,7 @@ def write():
         st.pyplot(plotResids(getUpdatedResults(df)))
         st.write(
             """
-            ### Conclusion
+            ## Conclusion
             Although temperature does seem to have an impact, the impact itself seems to be negligible.  
             It looks like month and day of week have a more significant effect.   
             If I were to explore this particular relationship further, I'd try to obtain hourly data (both for intake, 

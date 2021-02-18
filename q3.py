@@ -22,8 +22,11 @@ def write():
     st.write(
     """
     # Instructions
-    1. Select "Browse files" and chose the intake data csv file
-    2. Select the "Upload Data" button!  
+    1. If you have NOT selected a file, select "Browse files" and chose the intake data csv file
+    2. (optional) change Moving Average value
+    3. Select the "Upload Data" button!  
+
+    (Please be patient while data and visuals load)
 
     """)
 
@@ -35,35 +38,35 @@ def write():
         Using a moving Moving Average Days value of 1 will show the normal (un-smoothed) data. 
         """
         )
-    movingAverageDays = st.number_input('Moving Average Days', 30)
+    movingAverageDays = st.number_input('Moving Average Days', value=30)
 
     st.write(
     """
-    ## Question 1: 
+    ## Question 3: 
     Where are there holes in the data? hint: think about providing an analysis that a shelter operations director 
     might be able to use to try and tell how staff are doing with proper data input.
 
     """)
 
-    st.write(
-    """
-    ## Analysis
-    Wherever possible, we display two data plots:  
-    + raw
-    + normalized  
-
-    The raw plot is just that: raw data.  
-    The normalized plot displays items as a percent of the day's intake.  
-    For example if 20 dogs were taken in on a certain date, and there were 
-    40 total intakes for that date, then the value for dog intakes would be 0.5   
-
-
-    """)
-    
 
       
     if st.button('Upload Data'):
         df = importDataNormalized(uploaded_file)
+        st.write(
+            """
+            ## Findings
+            + src_intake_subtype being left as an empty field occured lease frequently around the 2nd quarter of the year, increased during the middle of the year, 
+            and slowly stared decreasing towards the end of the year.
+            + src_intake_reason being left as an empty field has increased since inception, and has remained high (a little under 50%).
+            + dob and src_found_zip_code are also sometimes left empty.
+            + There are some 0 valued entries for src_finders_zip_code. This might be because:  
+                + human error
+                + unknown zip code, but field is required, so 0 was entered 
+            + There are entries where age is negative (dob occurs later than intake date). This might be because:  
+                + human error
+                + intake animal was pregnant and had babies later on?
+            """)
+        
         st.write(
             """
             ## Example empty fields visuals
