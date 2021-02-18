@@ -6,6 +6,12 @@ def write():
     st.write(
     """
     # Instructions
+
+    Go to one of the questions, upload the intake data csv file, and select the upload button!  
+
+    Please give it a few minutes to finish loading (especially question 1); there are lots of visuals.
+
+    In addition, you can find instructions for the following below:
     + enlarge tables and visuals
     + save an excel sheet as a csv file  
 
