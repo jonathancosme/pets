@@ -20,7 +20,28 @@ def write():
 
     st.write(
     """
-    # Question 1: 
+    # Instructions
+    1. Select "Browse files" and chose the intake data csv file
+    2. (optional) change Moving Average value
+    3. Select the "Upload Data" button!  
+
+    """)    
+    
+    uploaded_file = st.file_uploader("Step 1: Select a csv file to upload.")
+
+
+    st.write(
+        """
+        
+        We apply a moving average in order to smooth out the data, and visualize trends more easily.  
+        Using a moving Moving Average Days value of 1 will show the normal (un-smoothed) data. 
+        """
+        )
+    movingAverageDays = st.number_input('Moving Average Days', 30)
+
+    st.write(
+    """
+    ## Question 1: 
     How did intakes trend over time and were there any sub populations that saw unusual trends when compared to the whole?
 
     """)
@@ -41,17 +62,7 @@ def write():
     """)
     
 
-    uploaded_file = st.file_uploader("Step 1: Select a photo to upload.")
-
-
-    st.write(
-        """
-        
-        We apply a moving average in order to smooth out the data, and visualize trends more easily.  
-        Using a moving Moving Average Days value of 1 will show the normal (un-smoothed) data. 
-        """
-        )
-    movingAverageDays = st.number_input('Moving Average Days', 30)
+    
     
       
     if st.button('Upload Data'):

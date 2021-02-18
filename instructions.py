@@ -7,10 +7,14 @@ def write():
     """
     # Instructions
 
-    Go to one of the questions, upload the intake data csv file, and select the upload button!  
+    1. Go to one of the questions
+    2. Select "Browse files" and chose the intake data csv file
+    3. (optional) change Moving Average value
+    4. Select the "Upload" Data button!  
 
     Please give it a few minutes to finish loading (especially question 1); there are lots of visuals.
 
+    # Additional Instructions
     In addition, you can find instructions for the following below:
     + enlarge tables and visuals
     + save an excel sheet as a csv file  

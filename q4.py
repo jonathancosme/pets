@@ -13,6 +13,15 @@ def write():
         df = mergeWithWeatherDF(df)
         return df
 
+    st.write(
+    """
+    # Instructions
+    1. Select "Browse files" and chose the intake data csv file
+    2. Select the "Upload Data" button!  
+
+    """)
+
+    uploaded_file = st.file_uploader("Step 1: Select a csv file to upload.")
 
     st.write(
     """
@@ -36,7 +45,7 @@ def write():
     """)
     
 
-    uploaded_file = st.file_uploader("Step 1: Select a photo to upload.")
+    
     
       
     if st.button('Upload Data'):
